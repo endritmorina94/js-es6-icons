@@ -151,14 +151,22 @@ $(options).change(function () {
 
     //Se il valore di options è vuoto stampo tutte le icone
     if (optionVal == "") {
+        //Cancello il container
+        iconsContainer.html("");
 
+        //Stampo le icone
         printIcons(coloredIcons, iconsContainer);
 
     //Altrimenti le stampo in base al tipo
     } else {
+        //Cancello il container
+        iconsContainer.html("");
+
+        //Stampo le icone
         printIcons(arrayPerType, iconsContainer);
+
     }
-    
+
 })
 
 
@@ -272,13 +280,20 @@ function addOptions(arrayTypes, container) {
 
 }
 
-
+//Creo una funzione che crea un array con gli oggetti in base al type
+//array --> è l'array dal quale prendo gli oggetti
+//type --> sarà il valore type degli oggetti che intendiamo mettere nell'array
 function iconsArrayByType(array, type) {
 
+    //Creo un array che filtra l'array con tutti gli oggetti
     const iconsByType = array.filter((element) => {
+
+        //Torno nell'array/pusho gli elementi che hanno il valore della chiave type uguale al type argomento della funzione
         return element.type == type;
+
     });
 
+    //Alla fine del ciclo torno l'array con gli oggetti filtrati per type
     return iconsByType;
 
 }
