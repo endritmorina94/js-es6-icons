@@ -169,7 +169,7 @@ $(options).change(function () {
 });
 
 
-// ---------- FUNZIONI -----------
+// ---------- FUNZIONI ----------
 
 //Creo la funzione printIcon per stampare a schermo le varie icone dell'iconsArray
 //array --> è l'array con gli oggetti che voglio stampare
