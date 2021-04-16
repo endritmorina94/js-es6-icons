@@ -103,12 +103,52 @@ const colors = [
     'purple'
 ];
 
-// Milestone 1
+// MILESTONE 1
 // Partendo dalla seguente struttura dati ,
 // mostriamo in pagina tutte le icone disponibili come da layout.
 
-// Milestone 2
+//Dichiaro una costante per indicare l'elemento HTML dove stamperò le icone
+const iconsContainer = $("#icons-container");
+
+//Chiamo la funzione printIcons per stampare le icone
+printIcons(icons, iconsContainer);
+
+
+// MILESTONE 2
 // Coloriamo le icone per tipo
 
-// Milestone 3
+// MILESTONE 3
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+
+
+
+// Funzioni
+
+//Creo la funzione printIcon per stampare a schermo le varie icone dell'iconsArray
+
+//array --> è l'array con gli oggetti che voglio stampare
+//container --> è l'elemento html dove stamperò gli oggetti dell'array sopracitato
+function printIcons(array, container) {
+
+    //Ciclo tutti gli elementi dell'array
+    array.forEach((element) => {
+
+        //Per ogni elemento quindi creo una costante.
+        const {name, prefix, family} = element;
+
+        //Creo un template literal con il codice HTML e le costanti con le info dei vari oggetti
+        const iconToPrint = `
+            <div class="icon" style="color: blue">
+                <i class="${family} ${prefix}${name}"></i>
+
+                <div class="icon-name">
+                    ${name.toUpperCase()}
+                </div>
+            </div>
+        `;
+
+        //Stampo quindi il template literal nel container ad ogni elemento ciclato
+        container.append(iconToPrint);
+
+    });
+}
