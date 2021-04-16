@@ -149,25 +149,24 @@ $(options).change(function () {
     //Metto in una costante l'array con gli oggetti in base al tipo
     const arrayPerType = iconsArrayByType(coloredIcons, optionVal);
 
+    //Cancello il container
+    iconsContainer.html("");
+
     //Se il valore di options è vuoto stampo tutte le icone
     if (optionVal == "") {
-        //Cancello il container
-        iconsContainer.html("");
 
         //Stampo le icone
         printIcons(coloredIcons, iconsContainer);
 
     //Altrimenti le stampo in base al tipo
     } else {
-        //Cancello il container
-        iconsContainer.html("");
 
         //Stampo le icone
         printIcons(arrayPerType, iconsContainer);
 
     }
 
-})
+});
 
 
 // ---------- FUNZIONI -----------
