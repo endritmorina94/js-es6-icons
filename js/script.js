@@ -103,7 +103,7 @@ const colors = [
     'purple'
 ];
 
-// MILESTONE 1
+// MILESTONE 1:
 // Partendo dalla seguente struttura dati ,
 // mostriamo in pagina tutte le icone disponibili come da layout.
 
@@ -111,21 +111,34 @@ const colors = [
 const iconsContainer = $("#icons-container");
 
 //Chiamo la funzione printIcons per stampare le icone
-printIcons(icons, iconsContainer);
+// printIcons(icons, iconsContainer);
 
 
-// MILESTONE 2
+
+
+// MILESTONE 2:
 // Coloriamo le icone per tipo
 
-// MILESTONE 3
+//Dichiaro un nuovo array tramite la funzione addColor che mi aggiungerà i colori ad ogni elemento in base al tipo
+const coloredIcons = addColors(icons, colors);
+
+//Richiamo la funzione printIcons con il nuovo array compreso dei colori
+printIcons(coloredIcons, iconsContainer);
+
+
+
+
+
+
+
+// MILESTONE 3:
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 
 
 
-// Funzioni
+// ---------- FUNZIONI -----------
 
 //Creo la funzione printIcon per stampare a schermo le varie icone dell'iconsArray
-
 //array --> è l'array con gli oggetti che voglio stampare
 //container --> è l'elemento html dove stamperò gli oggetti dell'array sopracitato
 function printIcons(array, container) {
@@ -134,11 +147,11 @@ function printIcons(array, container) {
     array.forEach((element) => {
 
         //Per ogni elemento quindi creo una costante.
-        const {name, prefix, family} = element;
+        const {name, prefix, family, color} = element;
 
         //Creo un template literal con il codice HTML e le costanti con le info dei vari oggetti
         const iconToPrint = `
-            <div class="icon" style="color: blue">
+            <div class="icon" style="color: ${color}">
                 <i class="${family} ${prefix}${name}"></i>
 
                 <div class="icon-name">
@@ -151,4 +164,64 @@ function printIcons(array, container) {
         container.append(iconToPrint);
 
     });
+
+}
+
+
+//Creo una funzione che mi tornerà un array con tutti i type degli oggetti, non ripetuti
+//array --> è l'array dal quale estrapoleremo i type
+function filterType(array) {
+
+    //Dichiaro un array vuoto per poterci poi mettere i type
+    const typeFilteredArray= [];
+
+    //Ciclo gli elementi dell'array
+    array.forEach((element) => {
+
+        //Dichiaro il valore di type in una costante
+        const elementType = element.type;
+
+        //Se il valore non esiste già nell'array typeFilteredArray allora verrà pushato
+        if (!typeFilteredArray.includes(elementType)) {
+            typeFilteredArray.push(elementType);
+        }
+
+    });
+
+    //Torno l'array con i type
+    return typeFilteredArray;
+
+}
+
+
+//Creo una funzione che mi aggiunge la chiave color ad ogni elemento dell'array
+//array --> è l'array che verrà copiato e dal quale cloneremo gl'elementi
+//colorsArray --> è l'array con i colori
+function addColors(array, colorsArray) {
+
+    //Creo l'array con i vari type, grazie alla sopracitata funzione filterType()
+    const typesArray = filterType(array);
+
+    //Creo una nuova costante
+    const arrayWithColors = array.map((element) => {
+
+        //Mediante lo spread clono tutti gli oggetti di array
+        const newObj = {
+            ...element
+        };
+
+        //Dichiaro in una costante l'idice del type di ogni elemento rispetto all'array typesArray
+        const typeIndex = typesArray.indexOf(element.type);
+
+        //Setto il color all'oggetto usando l'indice del type come indice nell'array dei colori ColorsArray
+        newObj.color = colorsArray[typeIndex];
+
+        //Torno il nuovo oggetto
+        return newObj;
+
+    });
+
+    //Alla fine del ciclo la funzione torna il nuovo array con i colori agli oggetti
+    return arrayWithColors;
+
 }
