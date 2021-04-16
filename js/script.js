@@ -119,6 +119,9 @@ const iconsContainer = $("#icons-container");
 // MILESTONE 2:
 // Coloriamo le icone per tipo
 
+//Creo l'array con i vari type, grazie alla funzione filterType()
+const typesArray = filterType(icons);
+
 //Dichiaro un nuovo array tramite la funzione addColor che mi aggiungerà i colori ad ogni elemento in base al tipo
 const coloredIcons = addColors(icons, colors);
 
@@ -128,11 +131,15 @@ printIcons(coloredIcons, iconsContainer);
 
 
 
-
-
-
 // MILESTONE 3:
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+
+//Dichiaro una costante per indicare l'elemento HTML dove stamperò i vari type degli oggetti
+const options = $("#type");
+
+//Aggiungo le options al select mediante la funzione addOptions()
+addOptions(typesArray, options)
+
 
 
 
@@ -199,8 +206,7 @@ function filterType(array) {
 //colorsArray --> è l'array con i colori
 function addColors(array, colorsArray) {
 
-    //Creo l'array con i vari type, grazie alla sopracitata funzione filterType()
-    const typesArray = filterType(array);
+
 
     //Creo una nuova costante
     const arrayWithColors = array.map((element) => {
@@ -223,5 +229,26 @@ function addColors(array, colorsArray) {
 
     //Alla fine del ciclo la funzione torna il nuovo array con i colori agli oggetti
     return arrayWithColors;
+
+}
+
+
+//Creo una funzione che aggiungerà le options nell'HTML in base ai type degli oggetti
+//arrayTypes --> è l'array con i type degli ogetti che ho precedentemente ottenuto mediante la funzione filterType()
+//container --> è l'elemento HTML all'interno del quale aggiungerò le options
+function addOptions(arrayTypes, container) {
+
+    //Ciclo l'array con i type
+    arrayTypes.forEach((element) => {
+
+        //Creo un template literal con l'HTML che verrà poi aggiunto al container
+        const newOption = `
+        <option value="${element}">${element}</option>
+        `;
+
+        //Aggiunto il template literal al container ad ogni iterazione
+        container.append(newOption);
+
+    });
 
 }
