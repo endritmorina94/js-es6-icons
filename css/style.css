@@ -4,3 +4,55 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* COMMON */
+body {
+    background-color: #DDDDDD;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* HEADER */
+header {
+    background-color: white;
+}
+
+header img {
+    width: 25%;
+}
+
+/* SEARCH SECTION */
+.search-section {
+    background-color: #29B1DD;
+    color: white;
+    text-align: center;
+}
+
+.search-section label {
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+/* ICONS SECTION */
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon {
+    background-color: white;
+    width: calc(100% / 5 - 10px);
+    text-align: center;
+}
+
+.icon i{
+    font-size: 60px;
+}
+
+.icon-name {
+    color: black;
+}
