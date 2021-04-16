@@ -140,7 +140,26 @@ const options = $("#type");
 //Aggiungo le options al select mediante la funzione addOptions()
 addOptions(typesArray, options)
 
+//Al cambio del valore di options..
+$(options).change(function () {
 
+    //Metto il valore delle options in una costante
+    const optionVal= options.val();
+
+    //Metto in una costante l'array con gli oggetti in base al tipo
+    const arrayPerType = iconsArrayByType(coloredIcons, optionVal);
+
+    //Se il valore di options è vuoto stampo tutte le icone
+    if (optionVal == "") {
+
+        printIcons(coloredIcons, iconsContainer);
+
+    //Altrimenti le stampo in base al tipo
+    } else {
+        printIcons(arrayPerType, iconsContainer);
+    }
+    
+})
 
 
 // ---------- FUNZIONI -----------
@@ -250,5 +269,16 @@ function addOptions(arrayTypes, container) {
         container.append(newOption);
 
     });
+
+}
+
+
+function iconsArrayByType(array, type) {
+
+    const iconsByType = array.filter((element) => {
+        return element.type == type;
+    });
+
+    return iconsByType;
 
 }
